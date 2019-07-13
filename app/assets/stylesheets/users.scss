@@ -1,0 +1,66 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+body {
+    padding-top: 0px;
+}
+
+.sign-in{
+    padding-top: 50px;
+}
+
+.sign-up{
+    padding-top: 50px;
+}
+
+.mypage-top{
+    padding-top: 300px;
+    background-color: beige;
+}
+.profile-img{
+    margin-bottom: 10px;
+    
+}
+
+.profile-edit{
+    font-size: 12px;
+    text-align: center;
+    width: 100px;
+}
+
+.profile-name{
+    margin-top: 20px;
+}
+
+.mypage-nav{
+    border-bottom: solid 0.7px;
+    list-style: none;
+}
+
+.mypage-nav-item{
+    padding: 30px 100px;
+    display: inline-block;
+}
+
+.post-list{
+    margin: 15px;
+    display: inline-block;
+}
+
+.edit{
+    border: solid 1px gray;
+    padding-bottom: 20px;
+}
+
+h2{
+    text-align: center;
+}
+.edit-img{
+    margin: 20px;
+}
+
+.edit-btn{
+    margin-top: 20px;
+}
+

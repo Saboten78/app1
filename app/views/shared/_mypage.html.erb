@@ -1,0 +1,32 @@
+<div class="container-fluid mypage-top">
+        <div>
+            <div class="row">
+
+                <div class="col-lg-1 col-lg-offset-1">
+                    <%= attachment_image_tag @user, :profile_image, :fill, 100, 100, format: 'jpeg', class: "img-circle pull-left profile-img", fallback: "no_image.jpg", size:"100x100" %>
+                    <% if @user.id == current_user.id %>
+                        <%= link_to edit_user_path(@user), class: "" do %>
+                        <p class="center-block profile-edit">プロフィール<br>編集</p>
+                        <% end %>
+                    <% end %>
+                </div>
+                <div class="col-lg-2 profile-name">
+                    <p><%= @user.secondname %></p>
+                    <p><font size="5"><%= @user.name %></font></p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8 col-lg-offset-2">
+                    <a class="btn btn-link center-block" data-toggle="collapse" href="#collapseExample">
+                    	プロフィールを見る<br>
+                    	<span class="caret"></span>
+                    </a>
+                    <div class="collapse" id="collapseExample">
+	                    <div class="center-block">
+	                    	<p><%= simple_format(@user.text) %></p>
+	                    </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+</div>

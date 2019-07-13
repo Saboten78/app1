@@ -1,0 +1,85 @@
+  <div class="container">
+    <div class="row">
+      <div class="">
+        <div class="post-detail">
+          <div class="post-detail-image col-lg-6 col-lg-offset-1">
+            <%= attachment_image_tag @post_image, :image, :fill, 550, 550, format: 'jpeg' %>
+          </div>
+  
+          <div class="post-detail-text col-lg-4">
+            <div class="post-detail-user">
+              <%= link_to user_path(@post_image.user.id) do %>
+                <%= attachment_image_tag @post_image.user, :profile_image, :fill, 40, 40, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg", size:"40x40" %>
+                <%= @post_image.user.name %>
+              <% end %>
+              </a>
+            </div>
+      
+            <div class="post-detail-caption">
+              <p><%= simple_format(@post_image.caption) %></p>
+              <p><%= @post_image.created_at.strftime('%Y/%m/%d') %></p>
+            </div>
+            
+            <div class="post-detail-favorite">
+              <ul class="">
+             <% if @post_image.favorited_by?(current_user) %>
+               <span>
+                 <%= link_to post_image_favorites_path(@post_image), method: :delete do %>
+                   <i class="fa fa-heart" aria-hidden="true" style="color: red; "></i>
+                   <%= @post_image.favorites.count %> 人がいいねしました
+                 <% end %>
+               </span>
+             <% else %>
+               <span>  
+                 <%= link_to post_image_favorites_path(@post_image), method: :post do %>
+                   <i class="fa fa-heart-o" aria-hidden="true"></i>
+                   <%= @post_image.favorites.count %> 人がいいねしました
+                 <% end %>
+               </span>
+             <% end %>
+            </div>
+            
+            <div class="post-detail-comment">
+              <p class="comment-count">コメント(<%= @post_image.post_comments.count %>)</p>
+              
+              <% @post_image.post_comments.each do |post_comment| %>
+                  <div class="comment-body bb">
+                    <div class="comment-avatar">
+                       <%= attachment_image_tag post_comment.user, :profile_image, :fill, 60, 60, format: 'jpeg', class: "img-circle profile-img", fallback: "no_image.jpg" %>
+                      <a href="#"><%= post_comment.user.name %></a>
+                      <span class="comment-meta">
+                        <span class="comment-date"><%= post_comment.created_at.strftime('%Y/%m/%d') %></span>
+                      </span>
+                    </div>
+                    
+                    <div class="comment-text">
+                      <div class="comment-entry"><%= post_comment.comment %></div>
+                    </div>
+                  </div>
+              <% end %>
+            </div>
+            
+                <!-- Add comment section -->
+
+            <%= form_for [@post_image, @post_comment] do |f| %>
+              <div class="">
+                <div class="">
+                  <%= f.text_area :comment, rows:'1', class: "form-control",placeholder: "コメントをここに" %>
+                </div>
+              </div>
+               <%= f.submit "送信する", class: "btn btn-sm btn-base-1 mt-20 pull-right" %>
+            <% end %>
+          </div>
+          
+
+            
+      </div>      
+    </div>
+            <% if @post_image.user == current_user %>
+              <%= link_to "編集", edit_post_image_path(@post_image.id) %>
+              <%= link_to "削除", post_image_path(@post_image), method: :delete %>
+            <% end %>
+  </div>
+
+
+

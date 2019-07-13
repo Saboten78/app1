@@ -1,0 +1,10 @@
+
+    <div class="profile-box">
+        <p class="profile-box-item"><%= user.secondname %></p>
+        <h3 class="profile-box-name"><%= user.name %></h3>
+            <%= attachment_image_tag user, :profile_image, :fill, 120, 120, format: 'jpeg', class: "img-circle profile-img center-block", fallback: "no_image.jpg" %>
+            <% if user.id == current_user.id %>
+                <p class="profile-box-item"><%= link_to "プロフィール編集", edit_user_path(user), class: "" %></p>
+                <p class="profile-box-item"><button class="btn btn-lg btn-default"><%= link_to "新規投稿", new_post_image_path, class: "" %></button></p>
+            <% end %>
+    </div>

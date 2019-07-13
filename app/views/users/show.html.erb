@@ -1,0 +1,52 @@
+<div>
+    
+    <%= render 'shared/mypage', user: current_user %>
+    
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2">
+                
+                <ul class="nav nav-tabs">
+                	<li class="active"><a href="#sampleContentA" data-toggle="tab">投稿一覧</a></li>
+                	<li><a href="#sampleContentB" data-toggle="tab">レシピ</a></li>
+                	<li><a href="#sampleContentC" data-toggle="tab">商品</a></li>
+                	<li><a href="#sampleContentD" data-toggle="tab">お気に入り</a></li>
+                </ul>
+
+                <div class="tab-content">
+	                <div class="tab-pane active" id="sampleContentA">
+		                <div class="container-fluid">
+                            <% @post_images.each do |post_image| %>
+                                <div class="post-list">
+                                    <%= link_to post_image_path(post_image.id) do %>
+                                        <%= attachment_image_tag post_image, :image, :fill, 250, 250, format: 'jpeg' %>
+                                    <% end %>
+                                </div>
+                            <% end %>
+                        </div>
+	                </div>
+	                
+	                <div class="tab-pane" id="sampleContentB">
+		                <p>タブＢの内容</p>
+	                </div>
+	                <div class="tab-pane" id="sampleContentC">
+		                <p>タブＣの内容</p>
+	                </div>
+	                <div class="tab-pane" id="sampleContentD">
+	                    <div class="container-fluid">
+                            <% @user.favorited_post_images.each do |post_image| %>
+                                <div class="post-list">
+                                    <%= attachment_image_tag post_image, :image, :fill, 250, 250, format: 'jpeg' %>
+                                </div>
+                            <% end %>
+                        </div>
+	                </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+                
+                
+
+        

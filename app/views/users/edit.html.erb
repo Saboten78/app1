@@ -1,0 +1,32 @@
+<div class="container">
+  <div class="row">
+    <div class="col-lg-8 col-lg-offset-2 edit">
+      <div class="row">
+       <h2>プロフィール編集</h2>
+        <div class="col-lg-6 col-lg-offset-1">
+         <%= form_for(@user) do |f| %>
+          
+          <%= f.label :ひとこと %>
+          <%= f.text_field :secondname, class: 'form-control' %>
+          
+          <%= f.label :名前 %>
+          <%= f.text_field :name, class: 'form-control' %>
+  
+          <%= f.label :自己紹介 %>
+          <%= f.text_area :text, rows:'3', class: 'form-control' %>
+        </div>
+        <div class="col-lg-4">
+          <div>
+            <div class="edit-img">
+              <%= attachment_image_tag @user, :profile_image, :fill, 150, 150, class: "img-circle center-block profile-thumb", fallback: "no_image.jpg"%>
+            </div>
+            <label class="sr-only" for="inputEmail">ProfileImage</label>
+              <%= f.attachment_field :profile_image, placeholder: "プロフィール画像", class: "user-edit-form" %>
+          </div>
+        </div>
+      </div>
+    <%= f.submit "更新する", class: "btn btn-lg btn-info center-block edit-btn" %>
+    <% end %>
+    </div>
+  </div>
+</div>
